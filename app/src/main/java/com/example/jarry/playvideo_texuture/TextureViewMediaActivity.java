@@ -14,11 +14,11 @@ import android.view.TextureView;
 import java.io.IOException;
 
 public class TextureViewMediaActivity extends Activity implements TextureView.SurfaceTextureListener,
-        MediaPlayer.OnPreparedListener,  SurfaceHolder.Callback{
+        MediaPlayer.OnPreparedListener, SurfaceHolder.Callback {
     private static final String TAG = "GLViewMediaActivity";
 
 
-    public static final String videoPath = Environment.getExternalStorageDirectory().getPath()+"/Movies/不将就.mp4";
+    public static String videoPath = Environment.getExternalStorageDirectory().getPath() + "/Movies/不将就.mp4";
     private TextureView textureView;
     private MediaPlayer mediaPlayer;
 
@@ -29,7 +29,7 @@ public class TextureViewMediaActivity extends Activity implements TextureView.Su
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        videoPath = "/sdcard/VideoEdit/a.mp4";
         setContentView(R.layout.activity_main);
 
         textureView = (TextureView) findViewById(R.id.id_textureview);
@@ -77,6 +77,7 @@ public class TextureViewMediaActivity extends Activity implements TextureView.Su
             e1.printStackTrace();
         }
     }
+
     @Override
     public void onPrepared(MediaPlayer mp) {
         try {
@@ -98,8 +99,8 @@ public class TextureViewMediaActivity extends Activity implements TextureView.Su
     }
 
 
-    @Override protected void onStart()
-    {
+    @Override
+    protected void onStart() {
         Log.v(TAG, "GLViewMediaActivity::onStart()");
         super.onStart();
     }
@@ -114,18 +115,18 @@ public class TextureViewMediaActivity extends Activity implements TextureView.Su
         }
         if (mediaPlayer != null) {
             mediaPlayer.release();
-            mediaPlayer =null;
+            mediaPlayer = null;
         }
     }
 
-    @Override protected void onStop()
-    {
+    @Override
+    protected void onStop() {
         Log.v(TAG, "GLViewMediaActivity::onStop()");
         super.onStop();
     }
 
-    @Override protected void onDestroy()
-    {
+    @Override
+    protected void onDestroy() {
         Log.v(TAG, "GLViewMediaActivity::onDestroy()");
         super.onDestroy();
     }
@@ -133,7 +134,7 @@ public class TextureViewMediaActivity extends Activity implements TextureView.Su
 
     @Override
     public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
-        Log.v( TAG, "GLViewMediaActivity::onSurfaceTextureAvailable()"+ " tName:" + Thread.currentThread().getName() + "  tid:");
+        Log.v(TAG, "GLViewMediaActivity::onSurfaceTextureAvailable()" + " tName:" + Thread.currentThread().getName() + "  tid:");
 
         surfaceWidth = width;
         surfaceHeight = height;
@@ -159,16 +160,16 @@ public class TextureViewMediaActivity extends Activity implements TextureView.Su
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        Log.v( TAG, "GLViewMediaActivity::surfaceCreated()" );
+        Log.v(TAG, "GLViewMediaActivity::surfaceCreated()");
     }
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-        Log.v( TAG, "GLViewMediaActivity::surfaceChanged()" );
+        Log.v(TAG, "GLViewMediaActivity::surfaceChanged()");
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        Log.v( TAG, "GLViewMediaActivity::surfaceDestroyed()" );
+        Log.v(TAG, "GLViewMediaActivity::surfaceDestroyed()");
     }
 }
